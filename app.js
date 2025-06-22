@@ -33,10 +33,12 @@ app.use(express.json()); // Parses JSON data in the request body
 app.use(express.urlencoded({ extended: true })); // Parses form data (not needed for JSON)
 app.use(methodOverride('_method'));
 app.engine('ejs', ejsMate);
+// Serve static files from the public directory (required for deployment platforms like Render)
 app.use(express.static(path.join(__dirname, 'public')));
 
 // connecting to mongo db
 const MONGODB_URL = process.env.ATLASDB_URL;
+// Use the PORT provided by Render.com or default to 10000
 const PORT = process.env.PORT || 10000;
 connectToDB().then(()=>{
     console.log("Connected to DB");
