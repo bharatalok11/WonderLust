@@ -4,6 +4,10 @@ if(process.env.NODE_ENV != "production"){
 
 const express = require('express');
 const app = express();
+
+// Trust the proxy (important for secure cookies on Render)
+app.set('trust proxy', 1); 
+
 const mongoose = require('mongoose');
 const ejs = require('ejs');
 const path = require('path');
